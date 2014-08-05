@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SiamDev2012Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="hisOpcionesProcs">
+    <Key>
+      <PropertyRef Name="opcNumero" />
+    </Key>
+    <Property Name="opcNumero" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="opcTipo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="opcCodigo" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="opcNombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="opcInactivo" Type="Boolean" Nullable="false" />
+    <Property Name="opcCodGral" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="opcOrden" Type="Int32" Nullable="false" />
+    <Property Name="opcTipoOpcion" Type="Byte" Nullable="false" />
+    <Property Name="opcParametro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="hisTiposOpc" Relationship="Self.FK_OpcionesProcs_TiposOp" FromRole="hisOpcionesProcs" ToRole="hisTiposOpc" />
+  </EntityType>
+  <EntityType Name="hisTiposOpc">
+    <Key>
+      <PropertyRef Name="tipCodigo" />
+    </Key>
+    <Property Name="tipCodigo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipTipo" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="hisOpcionesProcs" Relationship="Self.FK_OpcionesProcs_TiposOp" FromRole="hisTiposOpc" ToRole="hisOpcionesProcs" />
+  </EntityType>
+  <Association Name="FK_OpcionesProcs_TiposOp">
+    <End Role="hisTiposOpc" Type="Self.hisTiposOpc" Multiplicity="1" />
+    <End Role="hisOpcionesProcs" Type="Self.hisOpcionesProcs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hisTiposOpc">
+        <PropertyRef Name="tipCodigo" />
+      </Principal>
+      <Dependent Role="hisOpcionesProcs">
+        <PropertyRef Name="opcTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SiamDev2012Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="hisOpcionesProcs" EntityType="Self.hisOpcionesProcs" />
+    <EntitySet Name="hisTiposOpc" EntityType="Self.hisTiposOpc" />
+    <AssociationSet Name="FK_OpcionesProcs_TiposOp" Association="Self.FK_OpcionesProcs_TiposOp">
+      <End Role="hisTiposOpc" EntitySet="hisTiposOpc" />
+      <End Role="hisOpcionesProcs" EntitySet="hisOpcionesProcs" />
+    </AssociationSet>
+    <FunctionImport Name="prcHCObtenerOpcionesDatos" ReturnType="Collection(SiamDev2012Model.prcHCObtenerOpcionesDatos_Result)">
+      <Parameter Name="strOpcTipo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerOpcionesDatos" ReturnType="Collection(SiamDev2012Model.prcHCObtenerOpcionesDatos_Result)">
+      <Parameter Name="strOpcTipo" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="prcHCObtenerOpcionesDatos_Result">
+    <Property Type="String" Name="Tipo" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="5" />
+    <Property Type="Int32" Name="Orden" Nullable="false" />
+    <Property Type="String" Name="Opcion" Nullable="true" MaxLength="500" />
+    <Property Type="Byte" Name="TipoOpcion" Nullable="false" />
+    <Property Type="String" Name="Parametro" Nullable="false" MaxLength="10" />
+    <Property Type="Boolean" Name="Inactivo" Nullable="false" />
+  </ComplexType>
+</Schema>

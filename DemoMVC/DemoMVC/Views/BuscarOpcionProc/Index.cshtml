@@ -1,0 +1,71 @@
+﻿@model DemoMVC.Models.ModelOpcionesProcs
+
+@{
+    ViewBag.Title = "Index";
+    
+    WebGrid grid = null;
+    //if (ViewBag.lstOpcProc != null)
+    //{
+    //    grid = new WebGrid(source: ViewBag.lstOpcProc, rowsPerPage: 5);
+    //}
+
+    if (Model.lstObjOpciones != null)
+    {
+        grid = new WebGrid(source: Model.lstObjOpciones, rowsPerPage: 5);
+        ViewBag.codTipo = Model.objTipoBuscar.tipoBuscar;
+        ViewData["codTipo"] = Convert.ToString(Model.objTipoBuscar.tipoBuscar);
+
+        if (Model.objTipoBuscar.tipoBuscar != null)
+        {
+            Cache["codTipo"] = Convert.ToString(Model.objTipoBuscar.tipoBuscar);
+        }
+        
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div style="border: 2px solid #0094ff;">
+    @using (Html.BeginForm())
+    {
+        @Html.Label("Tipo: ")
+        <br />
+        <br />
+        @Html.TextBoxFor(tipo => Model.objTipoBuscar.tipoBuscar)
+        <br />
+        <input type="submit" name="submit" />
+        <br />
+        if (!string.IsNullOrEmpty(ViewBag.msjError)) {
+            @ViewBag.msjError
+        }
+        <br />
+        <div style="display: none;">
+            @Html.Label("lblCodTipo", Model.objTipoBuscar.tipoBuscar)
+        </div>
+    }
+</div>
+
+@if (grid != null)
+{
+    <div style="border: 2px solid #0094ff">
+        @grid.GetHtml(
+                    tableStyle: "tabla",
+                    rowStyle: "fila",
+                    headerStyle: "cabecera",
+                    alternatingRowStyle: "fila2",
+                    columns: grid.Columns(grid.Column("numero", "Número"),
+                                           grid.Column("tipo", "Tipo"),
+                                           grid.Column("codigo", "Código"),
+                                           grid.Column("nombre", "Nombre"),
+                                           grid.Column("inactivo", "Inactivo"),
+                                           grid.Column("codigoGeneral", "CodigoGeneral"),
+                                           grid.Column("orden", "Orden"),
+                                           grid.Column("tipoOpcion", "TipoOpcion"),
+                                           grid.Column("parametro", "Parametro")
+                                        )
+                                 )
+    </div>
+}
+
+
+

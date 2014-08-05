@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SiamDev2012ModelStoreContainer" CdmEntityContainer="SiamDev2012Entities">
+    <EntitySetMapping Name="hisOpcionesProcs">
+      <EntityTypeMapping TypeName="SiamDev2012Model.hisOpcionesProcs">
+        <MappingFragment StoreEntitySet="hisOpcionesProcs">
+          <ScalarProperty Name="opcNumero" ColumnName="opcNumero" />
+          <ScalarProperty Name="opcTipo" ColumnName="opcTipo" />
+          <ScalarProperty Name="opcCodigo" ColumnName="opcCodigo" />
+          <ScalarProperty Name="opcNombre" ColumnName="opcNombre" />
+          <ScalarProperty Name="opcInactivo" ColumnName="opcInactivo" />
+          <ScalarProperty Name="opcCodGral" ColumnName="opcCodGral" />
+          <ScalarProperty Name="opcOrden" ColumnName="opcOrden" />
+          <ScalarProperty Name="opcTipoOpcion" ColumnName="opcTipoOpcion" />
+          <ScalarProperty Name="opcParametro" ColumnName="opcParametro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hisTiposOpc">
+      <EntityTypeMapping TypeName="SiamDev2012Model.hisTiposOpc">
+        <MappingFragment StoreEntitySet="hisTiposOpc">
+          <ScalarProperty Name="tipCodigo" ColumnName="tipCodigo" />
+          <ScalarProperty Name="tipNombre" ColumnName="tipNombre" />
+          <ScalarProperty Name="tipTipo" ColumnName="tipTipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="prcHCObtenerOpcionesDatos" FunctionName="SiamDev2012Model.Store.prcHCObtenerOpcionesDatos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiamDev2012Model.prcHCObtenerOpcionesDatos_Result">
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Opcion" ColumnName="Opcion" />
+          <ScalarProperty Name="TipoOpcion" ColumnName="TipoOpcion" />
+          <ScalarProperty Name="Parametro" ColumnName="Parametro" />
+          <ScalarProperty Name="Inactivo" ColumnName="Inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ObtenerOpcionesDatos" FunctionName="SiamDev2012Model.Store.prcHCObtenerOpcionesDatos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiamDev2012Model.prcHCObtenerOpcionesDatos_Result">
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Opcion" ColumnName="Opcion" />
+          <ScalarProperty Name="TipoOpcion" ColumnName="TipoOpcion" />
+          <ScalarProperty Name="Parametro" ColumnName="Parametro" />
+          <ScalarProperty Name="Inactivo" ColumnName="Inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<DemoMVC.Models.MDatos1>
+
+@{
+    ViewBag.Title = "Index";
+
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 5);
+}
+
+<h2>Index</h2>
+
+<div style="border: 2px solid #0094ff">
+    @grid.GetHtml(
+    tableStyle: "tabla",
+    rowStyle: "fila",
+    headerStyle: "cabecera",
+    alternatingRowStyle: "fila2",
+                    columns: grid.Columns(grid.Column("Codigo", "Codigo"),
+                           grid.Column("Inactivo", "Inactivo"),
+                           grid.Column("Opcion", "Opcion"),
+                           grid.Column("Orden", "Orden"),
+                           grid.Column("Parametro", "Parametro"),
+                           grid.Column("Tipo", "Tipo"),
+                           grid.Column("TipoOpcion", "TipoOpcion")
+                        )
+                 )
+</div>
+<br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoOpcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parametro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inactivo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Orden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoOpcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parametro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inactivo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+
+<style type="text/css">
+    .tabla{
+        border: 2px solid #808080;
+        width: 100%;
+    }
+        .tabla thead th {
+            border: 1px solid #808080;
+            text-align: center;
+        }
+        .tabla tbody tr td {
+            border: 1px solid #808080;
+            text-align: right;
+        }
+    .cabecera {
+        border: 1px solid #808080;
+        background-color: #c9f6f3;
+    }
+    .fila {
+        border: 1px solid #808080;
+        background-color: #d5d1d1;
+    }
+    .fila2{
+        background-color: #c0dda0;
+    }
+</style>
